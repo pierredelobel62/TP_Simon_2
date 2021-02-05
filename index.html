@@ -1,0 +1,32 @@
+<html>
+
+<head>
+    <title>Le Simon</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="myapp">
+        <play-button v-on:launch-game="launchCountdown"></play-button>
+        <level ref="levelComponent" v-show="gameLaunched"></level>
+        <countdown v-show="gameLaunched" ref="countdownComponent" v-on:finish="launchGame"></countdown>
+        <div id="buttons" v-show="gameLaunched">
+            <simon-button 
+                v-for="button in buttons" 
+                v-bind:key="button.name"
+                v-bind:data="button" 
+                v-on:click="clickButton">
+            </simon-button>
+        </div>
+    </div>
+
+    <script src="components/countdownComponent.js"></script>
+    <script src="components/playButtonComponent.js"></script>
+    <script src="components/simonButtonComponent.js"></script>
+    <script src="components/levelComponent.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
